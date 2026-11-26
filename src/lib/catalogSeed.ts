@@ -139,7 +139,8 @@ export function getShareablePortalUrl(
 ): string {
   const base = normalizePureOrigin(customOrigin || getShareableOrigin()) || getShareableOrigin();
   if (mode === 'customer') return `${base}/`;
-  return `${base}/?portal=${mode}`;
+  if (mode === 'delivery') return `${base}/kurir`;
+  return `${base}/${mode}`;
 }
 
 export function isLikelyTelegramBotContact(raw: string): boolean {

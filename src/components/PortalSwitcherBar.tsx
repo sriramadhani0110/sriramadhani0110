@@ -42,20 +42,20 @@ const PORTAL_ITEMS: {
   },
   {
     mode: 'delivery',
-    label: 'Deliveri',
-    href: '/?portal=delivery',
+    label: 'Kurir',
+    href: '/kurir',
     activeClass: 'bg-blue-700 text-white border-blue-700',
   },
   {
     mode: 'admin',
     label: 'Admin',
-    href: '/?portal=admin',
+    href: '/admin',
     activeClass: 'bg-slate-900 text-white border-slate-900',
   },
   {
     mode: 'master',
     label: 'Master Data',
-    href: '/?portal=master',
+    href: '/master',
     activeClass: 'bg-amber-600 text-white border-amber-600',
   },
 ];

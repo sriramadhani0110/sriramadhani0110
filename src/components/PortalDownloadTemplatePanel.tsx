@@ -79,13 +79,13 @@ const PORTAL_TEMPLATES: PortalTemplateSpec[] = [
     subtitle: 'Lihat pesanan siap kirim, GPS lokasi & unggah foto bukti sampai',
     audience: 'Kurir Lapangan · 1-Klik Tanpa Login Email',
     isolationNote:
-      'Hanya memuat portal Deliveri (/?portal=delivery). Terpisah penuh dari Pelanggan, Admin & Master.',
+      'Default membuka portal Kurir (/kurir), dan tetap mendukung akses /admin, /master, dan /pelanggan jika dibutuhkan.',
     fileSlug: 'Website_Deliveri',
     guideFilename: 'PANDUAN_PASANG_WEBSITE_DELIVERI.txt',
     topBarClass: 'bg-blue-700',
     iconTextClass: 'text-blue-700',
     buttonClass: 'bg-blue-700 hover:bg-blue-800 text-white',
-    ctaLabel: 'Download ZIP Deliveri',
+    ctaLabel: 'Download ZIP Kurir',
   },
   {
     id: 'admin',
@@ -94,7 +94,7 @@ const PORTAL_TEMPLATES: PortalTemplateSpec[] = [
     subtitle: 'Kelola antrean pesanan, katalog, barcode promo, CSV & printer struk',
     audience: 'Staf Admin · Login Google / Email',
     isolationNote:
-      'Hanya memuat portal Admin (/?portal=admin). Tidak digabungkan dengan file Pelanggan, Deliveri, atau Master.',
+      'Default membuka portal Admin (/admin), dan mendukung semua alamat portal di satu domain.',
     fileSlug: 'Website_Admin',
     guideFilename: 'PANDUAN_PASANG_WEBSITE_ADMIN.txt',
     topBarClass: 'bg-slate-900',
@@ -109,7 +109,7 @@ const PORTAL_TEMPLATES: PortalTemplateSpec[] = [
     subtitle: 'Kontrol nama toko, logo, kurs mata uang, tema, jam buka & backup',
     audience: 'Pemilik Toko · Akses Master',
     isolationNote:
-      'Hanya memuat portal Master Data (/?portal=master). Diunduh sebagai arsip mandiri khusus pemilik.',
+      'Default membuka portal Master Data (/master), dan mendukung semua alamat portal di satu domain.',
     fileSlug: 'Website_Master',
     guideFilename: 'PANDUAN_PASANG_WEBSITE_MASTER.txt',
     topBarClass: 'bg-amber-600',

@@ -28,7 +28,7 @@ export default defineConfig(() => {
           if (fs.existsSync(distDir)) {
             const buildStamp = Date.now().toString(36);
             const versionPayload = JSON.stringify({
-              version: `static-20261126-sync-v16-${buildStamp}`,
+              version: `static-20261126-sync-v17-${buildStamp}`,
               builtAt: Date.now(),
             });
             fs.writeFileSync(

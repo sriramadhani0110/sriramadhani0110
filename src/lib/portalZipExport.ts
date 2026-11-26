@@ -233,17 +233,23 @@ export function detectActivePortalTarget(): PortalZipTarget {
     path.startsWith('/delivery/') ||
     path === '/deliveri' ||
     path.startsWith('/deliveri/') ||
+    path === '/kurir' ||
+    path.startsWith('/kurir/') ||
     path === '/alpamart.tm.deliveri' ||
     path === '/alpamart.tm.delivery' ||
     path === '/alpamart-tm.deliveri' ||
     host.startsWith('deliveri.') ||
     host.startsWith('delivery.') ||
+    host.startsWith('kurir.') ||
     portalParam === 'delivery' ||
     portalParam === 'deliveri' ||
+    portalParam === 'kurir' ||
     hash.startsWith('#/delivery') ||
     hash.startsWith('#/deliveri') ||
+    hash.startsWith('#/kurir') ||
     hash === '#delivery' ||
-    hash === '#deliveri'
+    hash === '#deliveri' ||
+    hash === '#kurir'
   ) {
     return 'delivery';
   }

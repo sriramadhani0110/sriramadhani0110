@@ -1306,9 +1306,23 @@ async function startServer() {
   status = 200
 
 [[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+[[headers]]
   for = "/index.html"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/version.json"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
 `;
     const vercelJson = JSON.stringify(
       {
@@ -2133,7 +2147,7 @@ async function startServer() {
   // Live build/server version endpoint so all 4 portals (Customer, Delivery, Admin, Master)
   // automatically detect updates and stay synchronized without stale cached screens.
   const serverBootStamp = Date.now().toString(36);
-  const APP_SYNC_EPOCH = '20261126-sync-v16';
+  const APP_SYNC_EPOCH = '20261126-sync-v17';
   const resolveAppBuildVersion = (): string => {
     try {
       const distIndex = path.resolve(__dirname, 'dist', 'index.html');

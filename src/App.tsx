@@ -124,23 +124,6 @@ const PORTAL_GUIDE_SEEN_KEY = 'alpamart_portal_guide_seen_v1';
 
 function detectSiteMode(): SiteMode {
   if (typeof window === 'undefined') return 'customer';
-  const envLockedPortal = String(
-    (import.meta.env?.VITE_LOCKED_PORTAL as string | undefined) || ''
-  )
-    .trim()
-    .toLowerCase();
-  const lockedPortal =
-    (
-      window as Window & { __ALPAMART_LOCKED_PORTAL__?: string }
-    ).__ALPAMART_LOCKED_PORTAL__ || envLockedPortal;
-  if (
-    lockedPortal === 'customer' ||
-    lockedPortal === 'delivery' ||
-    lockedPortal === 'admin' ||
-    lockedPortal === 'master'
-  ) {
-    return lockedPortal;
-  }
   let decodedPath = window.location.pathname;
   try {
     decodedPath = decodeURIComponent(window.location.pathname);
@@ -153,6 +136,8 @@ function detectSiteMode(): SiteMode {
   const params = new URLSearchParams(window.location.search);
   const portalParam = (params.get('portal') || params.get('site') || '').toLowerCase();
 
+  // 1. Explicit portal route in URL (/master, /admin, /kurir, /pelanggan, ?portal=...) ALWAYS takes priority
+  //    so a single Netlify/custom domain smoothly serves all 4 portals without getting trapped in customer mode.
   if (
     path === '/master' ||
     path.startsWith('/master/') ||
@@ -205,6 +190,42 @@ function detectSiteMode(): SiteMode {
     hash === '#kurir'
   ) {
     return 'delivery';
+  }
+
+  if (
+    path === '/pelanggan' ||
+    path.startsWith('/pelanggan/') ||
+    path === '/customer' ||
+    path.startsWith('/customer/') ||
+    path === '/toko' ||
+    path.startsWith('/toko/') ||
+    portalParam === 'pelanggan' ||
+    portalParam === 'customer' ||
+    hash.startsWith('#/pelanggan') ||
+    hash === '#pelanggan' ||
+    hash.startsWith('#/customer') ||
+    hash === '#customer'
+  ) {
+    return 'customer';
+  }
+
+  // 2. Fallback to locked default portal ONLY when opening the root URL ("/") without an explicit portal route
+  const envLockedPortal = String(
+    (import.meta.env?.VITE_LOCKED_PORTAL as string | undefined) || ''
+  )
+    .trim()
+    .toLowerCase();
+  const lockedPortal =
+    (
+      window as Window & { __ALPAMART_LOCKED_PORTAL__?: string }
+    ).__ALPAMART_LOCKED_PORTAL__ || envLockedPortal;
+  if (
+    lockedPortal === 'customer' ||
+    lockedPortal === 'delivery' ||
+    lockedPortal === 'admin' ||
+    lockedPortal === 'master'
+  ) {
+    return lockedPortal;
   }
 
   return 'customer';
@@ -324,7 +345,11 @@ export function AppContent() {
 
   const handleNavigatePortal = (targetMode: SiteMode) => {
     const nextUrl =
-      targetMode === 'customer' ? '/' : `/?portal=${targetMode}`;
+      targetMode === 'customer'
+        ? '/'
+        : targetMode === 'delivery'
+          ? '/kurir'
+          : `/${targetMode}`;
     try {
       window.history.pushState({}, '', nextUrl);
     } catch {
