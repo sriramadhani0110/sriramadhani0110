@@ -180,7 +180,7 @@ export function TelegramFloatingChat({ user }: TelegramFloatingChatProps) {
   };
 
   return (
-    <div className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-4 sm:left-5 z-40 no-print flex flex-col items-start gap-3">
+    <div className="fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom))] right-4 sm:right-5 z-50 no-print flex flex-col items-end gap-3">
       {open && (
         <div
           className="w-[calc(100vw-2rem)] max-w-sm bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden"
