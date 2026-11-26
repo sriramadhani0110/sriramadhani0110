@@ -1,0 +1,8 @@
+{
+  "name": "Remix ALPAMART TRIMUIA ONLAINE",
+  "description": "Toko online resmi ALPAMART TRIMUIA ONLAINE dengan pembayaran CASH (KHR), QR ABA\u0027 PAY (USD), FREE DELIVERY, dan dasbor admin real-time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

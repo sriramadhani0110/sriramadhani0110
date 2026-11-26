@@ -1,0 +1,989 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Catalog product item available in ALPAMART TRIMUIA ONLAINE marketplace (base price in USD).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "sku": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "barcode": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "externalId": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "category": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "description": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 1000
+        },
+        "price": {
+          "type": "number"
+        },
+        "priceKhr": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["PCS", "PACK", "BOX", "KG", "LITER", "RENTENG", "COMBO", "BKS", "BOTOL", "DUS", "UNIT", "SET", "CTN", "GR", "ML"]
+        },
+        "stock": {
+          "type": "integer"
+        },
+        "imageUrl": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 500
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "promoActive": {
+          "type": "boolean"
+        },
+        "promoPriceUsd": {
+          "type": "number"
+        },
+        "promoPriceKhr": {
+          "type": "number"
+        },
+        "promoDiscountPercent": {
+          "type": "integer"
+        },
+        "promoStartDate": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "promoEndDate": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "promoLabel": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "syncSource": {
+          "type": "string",
+          "enum": ["manual", "journal_pos"]
+        },
+        "sourceUpdatedAt": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "lastOrderId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "sku", "category", "description", "price", "stock", "imageUrl", "isActive", "createdAt", "updatedAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer checkout order routed into the Admin ROBOTO queue with KHR (CASH) or USD (QR) payment currency.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "orderNumber": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 40
+        },
+        "customerId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "customerEmail": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 120
+        },
+        "customerPhone": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 64
+        },
+        "shippingAddress": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 12
+        },
+        "locationDetail": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "locationCoords": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "locationUrl": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "locationImageUrl": {
+          "type": "string",
+          "maxLength": 250000
+        },
+        "deliveryProofImageUrl": {
+          "type": "string",
+          "maxLength": 350000
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["CASH", "QR"]
+        },
+        "currency": {
+          "type": "string",
+          "enum": ["KHR", "USD", "IDR", "THB", "MYR", "SGD", "VND"]
+        },
+        "shippingMethod": {
+          "type": "string",
+          "enum": ["FREE DELIVERY", "ROBOTO Express", "Reguler", "Same Day"]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "items": {
+          "type": "array"
+        },
+        "subtotal": {
+          "type": "number"
+        },
+        "shippingCost": {
+          "type": "number"
+        },
+        "totalAmount": {
+          "type": "number"
+        },
+        "trackingNumber": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "processing", "shipped", "completed", "cancelled"]
+        },
+        "autoProcessed": {
+          "type": "boolean"
+        },
+        "deliveryEmailHashes": {
+          "type": "array"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "orderNumber",
+        "customerId",
+        "customerName",
+        "customerEmail",
+        "customerPhone",
+        "shippingAddress",
+        "city",
+        "postalCode",
+        "paymentMethod",
+        "currency",
+        "shippingMethod",
+        "notes",
+        "items",
+        "subtotal",
+        "shippingCost",
+        "totalAmount",
+        "trackingNumber",
+        "status",
+        "autoProcessed",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AutomationSettings": {
+      "title": "AutomationSettings",
+      "description": "Configuration for the ROBOTO automated order processing engine.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "autoConfirmOrders": {
+          "type": "boolean"
+        },
+        "autoGenerateResi": {
+          "type": "boolean"
+        },
+        "autoDeductStock": {
+          "type": "boolean"
+        },
+        "lowStockThreshold": {
+          "type": "integer"
+        },
+        "defaultCourierPrefix": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 16
+        },
+        "updatedBy": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "autoConfirmOrders", "autoGenerateResi", "autoDeductStock", "lowStockThreshold", "defaultCourierPrefix", "updatedBy", "updatedAt"]
+    },
+    "AutomationLog": {
+      "title": "AutomationLog",
+      "description": "Immutable audit log of automated ROBOTO order actions.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "orderId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "orderNumber": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "action": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 400
+        },
+        "status": {
+          "type": "string",
+          "enum": ["success", "warning"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "orderId", "orderNumber", "action", "detail", "status", "createdAt"]
+    },
+    "AdminProfile": {
+      "title": "AdminProfile",
+      "description": "Authorized admin account entry.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 120
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "name", "createdAt"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer private shipping profile isolated from public paths.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 120
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 24
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 12
+        },
+        "locationDetail": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "locationCoords": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "locationUrl": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "name", "email", "phone", "address", "city", "postalCode", "updatedAt"]
+    },
+    "Promotion": {
+      "title": "Promotion",
+      "description": "Storefront promotion for Combo (Buy X Free Y), Buy X Get Y (buy_x_get_y), and percentage discounts (discount) with automatic start/expiry schedule and auto-zero stock.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 400
+        },
+        "promoType": {
+          "type": "string",
+          "enum": ["discount", "buy_x_get_y", "combo"]
+        },
+        "productId": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "discountPercent": {
+          "type": "integer"
+        },
+        "buyQty": {
+          "type": "integer"
+        },
+        "getQty": {
+          "type": "integer"
+        },
+        "startDate": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "endDate": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "autoZeroStockOnExpiry": {
+          "type": "boolean"
+        },
+        "expiredStockZeroedAt": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "promoType",
+        "productId",
+        "discountPercent",
+        "buyQty",
+        "getQty",
+        "isActive",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "StoreCategory": {
+      "title": "StoreCategory",
+      "description": "Editable product category managed by Admin for catalog organization and storefront filtering.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "sortOrder": {
+          "type": "integer"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "sortOrder", "isActive", "createdAt", "updatedAt"]
+    },
+    "DeliveryAccount": {
+      "title": "DeliveryAccount",
+      "description": "Authorized read-only delivery courier account managed by Admin.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 120
+        },
+        "emailHash": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 24
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "name", "email", "emailHash", "phone", "isActive", "createdAt", "updatedAt"]
+    },
+    "DeliveryRoster": {
+      "title": "DeliveryRoster",
+      "description": "Non-PII hashed roster of active delivery account emails used to stamp incoming checkout orders atomically.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "activeEmailHashes": {
+          "type": "array"
+        },
+        "updatedBy": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "activeEmailHashes", "updatedBy", "updatedAt"]
+    },
+    "StoreSupportConfig": {
+      "title": "StoreSupportConfig",
+      "description": "Public customer support Telegram configuration managed by Admin.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "telegramUsername": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "adminDisplayName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "greetingMessage": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "updatedBy": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 128
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "telegramUsername", "adminDisplayName", "greetingMessage", "updatedBy", "updatedAt"]
+    },
+    "StoreBanner": {
+      "title": "StoreBanner",
+      "description": "Homepage hero carousel slide for promotional banners or important store announcements managed by Admin.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "kicker": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "title": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "imageUrl": {
+          "type": "string",
+          "maxLength": 250000
+        },
+        "ctaLabel": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "ctaTarget": {
+          "type": "string",
+          "enum": ["catalog", "promo", "search", "orders", "none"]
+        },
+        "sortOrder": {
+          "type": "integer"
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["id", "kicker", "title", "subtitle", "imageUrl", "ctaLabel", "ctaTarget", "sortOrder", "isActive", "createdAt", "updatedAt"]
+    },
+    "StoreCheckoutConfig": {
+      "title": "StoreCheckoutConfig",
+      "description": "Public storefront cart, checkout flow, shipping, exchange rate, and payment QR/barcode configuration managed by Admin.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "cartTitle": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "cartNotice": { "type": "string", "maxLength": 240 },
+        "minOrderUsd": { "type": "number" },
+        "checkoutButtonLabel": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "checkoutHeading": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "checkoutIntro": { "type": "string", "maxLength": 300 },
+        "shippingLabel": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "shippingEta": { "type": "string", "maxLength": 80 },
+        "shippingCostUsd": { "type": "number" },
+        "requireGpsLocation": { "type": "boolean" },
+        "allowLocationPhoto": { "type": "boolean" },
+        "showNotesField": { "type": "boolean" },
+        "contactFieldLabel": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "contactFieldPlaceholder": { "type": "string", "maxLength": 80 },
+        "submitButtonLabel": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "enableCashPayment": { "type": "boolean" },
+        "cashTitle": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "cashDescription": { "type": "string", "maxLength": 160 },
+        "enableQrPayment": { "type": "boolean" },
+        "qrTitle": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "qrDescription": { "type": "string", "maxLength": 160 },
+        "exchangeRateKhr": { "type": "integer" },
+        "paymentProviderName": { "type": "string", "minLength": 2, "maxLength": 40 },
+        "paymentTagline": { "type": "string", "maxLength": 80 },
+        "merchantName": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "accountHolder": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "accountNumber": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "paymentNetwork": { "type": "string", "minLength": 2, "maxLength": 30 },
+        "paymentQrImageUrl": { "type": "string", "maxLength": 250000 },
+        "qrInstructionText": { "type": "string", "maxLength": 240 },
+        "successTitle": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "successMessage": { "type": "string", "maxLength": 300 },
+        "updatedBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "cartTitle", "cartNotice", "minOrderUsd", "checkoutButtonLabel",
+        "checkoutHeading", "checkoutIntro", "shippingLabel", "shippingEta",
+        "shippingCostUsd", "requireGpsLocation", "allowLocationPhoto",
+        "showNotesField", "contactFieldLabel", "contactFieldPlaceholder",
+        "submitButtonLabel", "enableCashPayment", "cashTitle", "cashDescription",
+        "enableQrPayment", "qrTitle", "qrDescription", "exchangeRateKhr",
+        "paymentProviderName", "paymentTagline", "merchantName", "accountHolder",
+        "accountNumber", "paymentNetwork", "paymentQrImageUrl", "qrInstructionText",
+        "successTitle", "successMessage", "updatedBy", "updatedAt"
+      ]
+    },
+    "StoreMasterConfig": {
+      "title": "StoreMasterConfig",
+      "description": "Master Data global store branding, logo, currencies, exchange rate, theme, operational hours, and announcement settings managed exclusively by Master Data accounts.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "storeName": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "storeTagline": { "type": "string", "maxLength": 140 },
+        "storeLogoUrl": { "type": "string", "maxLength": 250000 },
+        "footerText": { "type": "string", "maxLength": 200 },
+        "primaryCurrencyCode": { "type": "string", "enum": ["USD", "KHR", "IDR", "THB", "MYR", "SGD", "VND"] },
+        "primaryCurrencySymbol": { "type": "string", "minLength": 1, "maxLength": 8 },
+        "secondaryCurrencyCode": { "type": "string", "enum": ["KHR", "USD", "IDR", "THB", "MYR", "SGD", "VND"] },
+        "secondaryCurrencySymbol": { "type": "string", "minLength": 1, "maxLength": 8 },
+        "exchangeRate": { "type": "number" },
+        "themeAccent": { "type": "string", "enum": ["blue_red", "emerald", "indigo", "amber", "rose", "slate"] },
+        "storeAddress": { "type": "string", "maxLength": 200 },
+        "storeHours": { "type": "string", "maxLength": 80 },
+        "telegramOrderUrl": { "type": "string", "maxLength": 200 },
+        "permanentStoreUrl": { "type": "string", "maxLength": 240 },
+        "announcementBarText": { "type": "string", "maxLength": 160 },
+        "maintenanceMode": { "type": "boolean" },
+        "updatedBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "storeName", "storeTagline", "storeLogoUrl", "footerText",
+        "primaryCurrencyCode", "primaryCurrencySymbol", "secondaryCurrencyCode",
+        "secondaryCurrencySymbol", "exchangeRate", "themeAccent", "storeAddress",
+        "storeHours", "telegramOrderUrl", "announcementBarText", "maintenanceMode",
+        "updatedBy", "updatedAt"
+      ]
+    },
+    "StoreHoursConfig": {
+      "title": "StoreHoursConfig",
+      "description": "Public storefront opening and closing hours template configuration managed by Admin.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "enabled": { "type": "boolean" },
+        "mode": { "type": "string", "enum": ["auto", "force_open", "force_closed"] },
+        "openTime": { "type": "string", "minLength": 5, "maxLength": 5, "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+        "closeTime": { "type": "string", "minLength": 5, "maxLength": 5, "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
+        "timezoneLabel": { "type": "string", "minLength": 2, "maxLength": 16 },
+        "openDaysText": { "type": "string", "minLength": 2, "maxLength": 60 },
+        "blockCheckoutWhenClosed": { "type": "boolean" },
+        "closedTitle": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "closedMessage": { "type": "string", "maxLength": 240 },
+        "openNotice": { "type": "string", "maxLength": 160 },
+        "updatedBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "enabled", "mode", "openTime", "closeTime", "timezoneLabel",
+        "openDaysText", "blockCheckoutWhenClosed", "closedTitle", "closedMessage",
+        "openNotice", "updatedBy", "updatedAt"
+      ]
+    },
+    "ProductPrivateMeta": {
+      "title": "ProductPrivateMeta",
+      "description": "Strictly Admin-only product cost/buy price metadata isolated from public /products catalog.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "productId": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "externalId": { "type": "string", "maxLength": 80 },
+        "sku": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "barcode": { "type": "string", "maxLength": 64 },
+        "costPriceUsd": { "type": "number" },
+        "costPriceKhr": { "type": "number" },
+        "sourceUpdatedAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "productId", "sku", "costPriceUsd", "costPriceKhr", "updatedAt"]
+    },
+    "JournalPosConfig": {
+      "title": "JournalPosConfig",
+      "description": "Admin-only non-secret JOURNAL POS sync settings, connection status, and permanent store URL.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "baseUrl": { "type": "string", "minLength": 8, "maxLength": 200 },
+        "productsEndpoint": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "pingEndpoint": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "autoSyncEnabled": { "type": "boolean" },
+        "syncIntervalSeconds": { "type": "integer" },
+        "signatureFormat": { "type": "string", "enum": ["method_path_timestamp", "timestamp_method_path", "timestamp_path", "timestamp_only"] },
+        "connectionStatus": { "type": "string", "enum": ["idle", "online", "syncing", "error", "updated"] },
+        "lastSyncAtIso": { "type": "string", "maxLength": 64 },
+        "lastSyncSummary": { "type": "string", "maxLength": 300 },
+        "lastSuccessCount": { "type": "integer" },
+        "lastUpdatedCount": { "type": "integer" },
+        "lastInsertedCount": { "type": "integer" },
+        "lastFailedCount": { "type": "integer" },
+        "lastErrorDetail": { "type": "string", "maxLength": 400 },
+        "permanentStoreUrl": { "type": "string", "maxLength": 240 },
+        "updatedBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "baseUrl", "productsEndpoint", "pingEndpoint", "autoSyncEnabled",
+        "syncIntervalSeconds", "signatureFormat", "connectionStatus", "lastSyncAtIso",
+        "lastSyncSummary", "lastSuccessCount", "lastUpdatedCount", "lastInsertedCount",
+        "lastFailedCount", "lastErrorDetail", "permanentStoreUrl", "updatedBy", "updatedAt"
+      ]
+    },
+    "JournalPosSyncLog": {
+      "title": "JournalPosSyncLog",
+      "description": "Immutable Admin-only audit log of JOURNAL POS product synchronization runs.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "trigger": { "type": "string", "enum": ["manual", "auto", "webhook", "test_sample", "json_import"] },
+        "status": { "type": "string", "enum": ["online", "updated", "error"] },
+        "totalFetched": { "type": "integer" },
+        "successCount": { "type": "integer" },
+        "insertedCount": { "type": "integer" },
+        "updatedCount": { "type": "integer" },
+        "failedCount": { "type": "integer" },
+        "summary": { "type": "string", "minLength": 2, "maxLength": 300 },
+        "errorDetail": { "type": "string", "maxLength": 400 },
+        "changedSkus": { "type": "array" },
+        "triggeredBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id", "trigger", "status", "totalFetched", "successCount", "insertedCount",
+        "updatedCount", "failedCount", "summary", "errorDetail", "changedSkus",
+        "triggeredBy", "createdAt"
+      ]
+    },
+    "BackupArchiveRecord": {
+      "title": "BackupArchiveRecord",
+      "description": "Immutable Admin-only audit record of master data JSON/ZIP backup exports.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "filename": { "type": "string", "minLength": 4, "maxLength": 160 },
+        "format": { "type": "string", "enum": ["json", "zip"] },
+        "totalCollections": { "type": "integer" },
+        "totalDocuments": { "type": "integer" },
+        "triggeredBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "filename", "format", "totalCollections", "totalDocuments", "triggeredBy", "createdAt"]
+    },
+    "StoreBackgroundConfig": {
+      "title": "StoreBackgroundConfig",
+      "description": "Global background image configuration applied across all 4 portals (Customer, Delivery, Admin, Master Data) and editable by Admin.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "enum": ["background"] },
+        "imageUrl": { "type": "string", "maxLength": 250000 },
+        "displayMode": { "type": "string", "enum": ["watermark_center", "watermark_tile", "cover"] },
+        "opacity": { "type": "integer", "minimum": 5, "maximum": 85 },
+        "enabled": { "type": "boolean" },
+        "updatedBy": { "type": "string", "minLength": 2, "maxLength": 128 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "imageUrl", "displayMode", "opacity", "enabled", "updatedBy", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Marketplace product catalog documents (public selling info only, never cost price)."
+    },
+    "/productPrivateMeta/{productId}": {
+      "schema": { "$ref": "#/entities/ProductPrivateMeta" },
+      "description": "Strictly Admin-only product cost/buy prices isolated from customers."
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/StoreCategory" },
+      "description": "Admin-managed product categories shown in storefront and catalog filters."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer checkout orders visible to the order owner, admin, and active read-only delivery accounts."
+    },
+    "/deliveryAccounts/{accountId}": {
+      "schema": { "$ref": "#/entities/DeliveryAccount" },
+      "description": "Authorized read-only delivery courier accounts managed by Admin."
+    },
+    "/storeMeta/{docId}": {
+      "schema": { "$ref": "#/entities/DeliveryRoster" },
+      "description": "Non-PII delivery routing hashes for automatic order dispatch."
+    },
+    "/storeSupport/{docId}": {
+      "schema": { "$ref": "#/entities/StoreSupportConfig" },
+      "description": "Public Telegram support contact managed by Admin for the floating customer chat widget."
+    },
+    "/storeBanners/{bannerId}": {
+      "schema": { "$ref": "#/entities/StoreBanner" },
+      "description": "Homepage carousel banners and announcements managed by Admin."
+    },
+    "/storeConfig/{docId}": {
+      "schema": { "$ref": "#/entities/StoreCheckoutConfig" },
+      "description": "Public storefront cart, checkout, master branding, opening hours, and global background image settings (/storeConfig/checkout, /storeConfig/master, /storeConfig/hours, /storeConfig/background)."
+    },
+    "/integrationConfig/{docId}": {
+      "schema": { "$ref": "#/entities/JournalPosConfig" },
+      "description": "Admin-only JOURNAL POS integration settings (no secrets stored)."
+    },
+    "/journalPosSyncLogs/{logId}": {
+      "schema": { "$ref": "#/entities/JournalPosSyncLog" },
+      "description": "Admin-only immutable synchronization audit history for JOURNAL POS."
+    },
+    "/backupArchives/{backupId}": {
+      "schema": { "$ref": "#/entities/BackupArchiveRecord" },
+      "description": "Admin-only immutable history of exported JSON/ZIP master backups."
+    },
+    "/automationSettings/{settingId}": {
+      "schema": { "$ref": "#/entities/AutomationSettings" },
+      "description": "ROBOTO automated order processing settings."
+    },
+    "/automationLogs/{logId}": {
+      "schema": { "$ref": "#/entities/AutomationLog" },
+      "description": "Chronological ROBOTO engine execution log."
+    },
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminProfile" },
+      "description": "Authorized admin accounts."
+    },
+    "/users/{uid}/private/{docId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private customer shipping PII isolated under user private subcollection."
+    },
+    "/promotions/{promoId}": {
+      "schema": { "$ref": "#/entities/Promotion" },
+      "description": "Active discount and Buy X Get Y promotions managed by Admin and shown on dedicated customer discount page."
+    }
+  }
+}

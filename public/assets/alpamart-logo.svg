@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Logo ALPAMART">
+  <defs>
+    <linearGradient id="bgRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="50%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </linearGradient>
+    <linearGradient id="ribbonBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#1e40af" />
+    </linearGradient>
+    <clipPath id="roundedCard">
+      <rect x="16" y="16" width="480" height="480" rx="96" ry="96" />
+    </clipPath>
+  </defs>
+
+  <!-- Outer soft border -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="url(#bgRed)" />
+
+  <g clip-path="url(#roundedCard)">
+    <!-- Top iconic retail stripes -->
+    <rect x="16" y="16" width="480" height="34" fill="#1d4ed8" />
+    <rect x="16" y="50" width="480" height="18" fill="#facc15" />
+
+    <!-- Subtle top glossy sheen -->
+    <ellipse cx="256" cy="90" rx="260" ry="90" fill="#ffffff" fill-opacity="0.09" />
+
+    <!-- Iconic Bold Geometric 'A' Mark (super legible even at 16px browser favicon) -->
+    <path
+      d="M256 96 L354 316 L296 316 L278 270 L234 270 L216 316 L158 316 Z M256 168 L244 222 L268 222 Z"
+      fill="#ffffff"
+      fill-rule="evenodd"
+    />
+
+    <!-- Golden speed swoosh crossbar accent -->
+    <path
+      d="M178 242 C226 226, 286 226, 338 244 L328 266 C282 252, 228 252, 186 264 Z"
+      fill="#facc15"
+    />
+
+    <!-- Bottom Royal Blue Brand Ribbon -->
+    <rect x="16" y="344" width="480" height="16" fill="#facc15" />
+    <rect x="16" y="360" width="480" height="136" fill="url(#ribbonBlue)" />
+
+    <!-- Crisp ALPAMART Wordmark -->
+    <text
+      x="256"
+      y="436"
+      text-anchor="middle"
+      fill="#ffffff"
+      font-family="Arial Black, Impact, Helvetica Neue, Arial, sans-serif"
+      font-size="76"
+      font-weight="900"
+      letter-spacing="2"
+    >ALPAMART</text>
+    <text
+      x="256"
+      y="472"
+      text-anchor="middle"
+      fill="#fde047"
+      font-family="Helvetica Neue, Arial, sans-serif"
+      font-size="24"
+      font-weight="800"
+      letter-spacing="6"
+    >TRIMUIA ONLAINE</text>
+  </g>
+
+  <!-- Crisp inner frame stroke -->
+  <rect
+    x="18"
+    y="18"
+    width="476"
+    height="476"
+    rx="94"
+    ry="94"
+    fill="none"
+    stroke="#ffffff"
+    stroke-opacity="0.22"
+    stroke-width="4"
+  />
+</svg>

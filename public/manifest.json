@@ -1,0 +1,29 @@
+{
+  "name": "ALPAMART TRIMUIA ONLAINE",
+  "short_name": "ALPAMART",
+  "description": "Marketplace online resmi ALPAMART TRIMUIA ONLAINE dengan pembayaran CASH, QR, dan FREE DELIVERY.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "/assets/alpamart-logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/alpamart-logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/alpamart-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

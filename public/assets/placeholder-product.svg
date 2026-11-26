@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="16" fill="#F1F5F9"/>
+  <rect x="16" y="16" width="368" height="268" rx="12" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="8 6"/>
+  <g transform="translate(160 88)">
+    <rect x="8" y="14" width="64" height="52" rx="8" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2.5"/>
+    <circle cx="28" cy="34" r="6" fill="#94A3B8"/>
+    <path d="M16 58L32 42L44 52L54 44L64 58H16Z" fill="#94A3B8"/>
+  </g>
+  <text x="200" y="192" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#475569">Siap Edit Gambar Produk</text>
+  <text x="200" y="214" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748B">ALPAMART TRIMULIA ONLINE</text>
+</svg>
